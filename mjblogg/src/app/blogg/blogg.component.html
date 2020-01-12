@@ -1,8 +1,10 @@
-
 <article>
-    <div *ngFor="let s of markdown" class="posts">
-            <markdown [src]="'../../assets/Markdown/Welcome.md'" > </markdown>
+    <ng-container *ngIf="markdown">
+        <div *ngFor="let s of markdown" class="posts">
+            <markdown  [src]="s"> </markdown>
             <div id="commentsection"></div>
             <hr>
-    </div>
+
+        </div>
+    </ng-container>
 </article>
