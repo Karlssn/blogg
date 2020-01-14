@@ -7,5 +7,5 @@ const routes: Routes = [];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
-***REMOVED***
+})
 export class AppRoutingModule { }

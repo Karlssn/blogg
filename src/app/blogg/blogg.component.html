@@ -1,10 +1,22 @@
 <article>
     <ng-container *ngIf="markdown">
         <div *ngFor="let s of markdown" class="posts">
-            <markdown  [src]="s"> </markdown>
-            <div id="commentsection"></div>
-            <hr>
+            <markdown [src]="s"> </markdown>
 
+            <div id="commentsection">
+                <div *ngFor="let c of comments">
+                    <ng-container *ngIf="(markdownloc+c.PartitionKey._) == s">
+                        <h3> {{ c.Person._ }} </h3>
+                        <p> {{ c.RowKey._ }} </p>
+                    </ng-container>
+                </div>
+                <form #f="ngForm" (ngSubmit)="addComment(f, s)">
+                    <input type="text" name="name" value="Insert your name" ngModel required>
+                    <input type="text" name="text" value="Insert your comment" ngModel required>
+                    <button>Submit</button>
+                </form>
+            </div>
+            <hr>
         </div>
     </ng-container>
 </article>

@@ -5,7 +5,7 @@
     "arrow-parens": false,
     "deprecation": {
       "severity": "warning"
-***REMOVED***,
+    },
     "component-class-suffix": true,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
@@ -41,7 +41,7 @@
           "static-method",
           "instance-method"
         ]
-  ***REMOVED***
+      }
     ],
     "no-consecutive-blank-lines": false,
     "no-console": [

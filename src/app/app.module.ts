@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BloggComponent } from './blogg/blogg.component';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {DataService} from './data.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,12 +17,12 @@ import {DataService} from './data.service';
   ],
   imports: [
     HttpClientModule,
-    MarkdownModule.forRoot({ loader: HttpClient ***REMOVED***,
+    MarkdownModule.forRoot({ loader: HttpClient }),
     BrowserModule,
     AppRoutingModule,
-    
+    FormsModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
-***REMOVED***
+})
 export class AppModule { }

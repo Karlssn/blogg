@@ -1,40 +1,74 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+const express = require('express');
+const router = express.Router();
+var azure = require('azure-storage');
+var tableSvc;
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
+// connect
+const connection = (closure)=>{
+};
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+//Error handeling
+const sendError=(err,res)=>{
+    response.status = 501;
+    response.message = typeof err == 'object' ? err.message:err;
+    console.log(response);
+    res.status(501).json(response);
+};
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+// Response handeling
+let response = {
+ status:200,
+ data:[],
+ message:null
+};
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+// Get markdown
+router.get('/markdown', (req,res)=>{
+    tableSvc = azure.createTableService();
+    var query = new azure.TableQuery().select("*");
+    tableSvc.queryEntities('mdtable',query,null,function(error,result,response){
+        if(!error){
+            response.data = result.entries;
+            res.json(response.data);
+        }
+        else{
+            sendError(error,res);
+        }
+    })
+});
 
-***REMOVED***
+// Get comment
+router.get('/comment', (req,res)=>{
+    tableSvc = azure.createTableService();
+    var query = new azure.TableQuery().select("*");
+    tableSvc.queryEntities('cmtable',query,null,function(error,result,response){
+        if(!error){
+            response.data = result.entries;
+            res.json(response.data);
+        }
+        else{
+            sendError(error,res);
+        }
+    })
+});
+
+// Post comment
+router.post('/postComment', (req,res)=>{
+    var entGen = azure.TableUtilities.entityGenerator;
+    tableSvc = azure.createTableService();
+    console.log(req.body);
+    if(req.body.name != '' || req.body.PartitionKey != null){
+        var task = {
+            PartitionKey: entGen.String(req.body.PartitionKey), // fil
+            RowKey: entGen.String(req.body.RowKey),       // text
+            Timestamp : entGen.DateTime(req.body.Timestamp),       // nuvarande tid
+            Person: entGen.String(req.body.Person)    // person
+          };
+    }
+    tableSvc.insertEntity('cmtable',task, function (error, result, response) {
+        if(!error){
+          console.log('Successfully added comment to database');
+        }
+      });
+})
+module.exports = router;

@@ -4,7 +4,7 @@ import { DataService } from './data.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
-***REMOVED***
+})
 export class AppComponent {
   title = 'mjblogg';
   constructor() {}
