@@ -14,29 +14,28 @@ import { NgForm } from '@angular/forms';
 })
 export class BloggComponent implements OnInit {
 
-  markdown: string[] = [];
+  markdown: String[] = [];
   comments: any[] = [];
   markdownloc = '../../assets/Markdown/';
   constructor(private _dataService: DataService) {
     let _this = this;
     this._dataService.getMarkdown()
       .subscribe(res => {
-        res.map(function (x, index) {
-          let temp = _this.markdownloc + Object.values(x.RowKey)[1];
-          _this.markdown.push(temp);
-        })
-      }
-      );
+        _this.markdown = res.map((x) => {
+          return this.markdownloc+x
+        });
+      });
+
     this._dataService.getComment()
       .subscribe(res => {
         res.map((x, index) => {
           _this.comments.push(x);
         });
-      }, error =>{},() => {
-        this.comments.sort((a,b) => {
-          if(a.Timestamp._>b.Timestamp._){
+      }, error => { }, () => {
+        this.comments.sort((a, b) => {
+          if (a.Timestamp._ > b.Timestamp._) {
             return 1;
-          }if(a.Timestamp._<b.Timestamp._){
+          } if (a.Timestamp._ < b.Timestamp._) {
             return -1;
           }
           return 0;
@@ -50,6 +49,7 @@ export class BloggComponent implements OnInit {
     let comment = new Comment(filename, f.value.text, f.value.name, time);
     this._dataService.postComment(comment).subscribe(com =>
       this.comments.push(com));
+      window.location.reload();
   }
 
   ngOnInit() {

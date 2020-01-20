@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 var azure = require('azure-storage');
+var fs = require('fs'); 
 var tableSvc;
 
 // connect
-const connection = (closure)=>{
-};
+
 
 //Error handeling
 const sendError=(err,res)=>{
@@ -24,17 +24,12 @@ let response = {
 
 // Get markdown
 router.get('/markdown', (req,res)=>{
-    tableSvc = azure.createTableService();
-    var query = new azure.TableQuery().select("*");
-    tableSvc.queryEntities('mdtable',query,null,function(error,result,response){
+    fs.readdir( 'dist/mjblogg/assets/Markdown/', (error,files)=>{
         if(!error){
-            response.data = result.entries;
-            res.json(response.data);
+            res.json(files);
         }
-        else{
-            sendError(error,res);
-        }
-    })
+    });    
+
 });
 
 // Get comment

@@ -12,8 +12,8 @@ export class DataService {
   result:any;
   constructor(private _http: HttpClient) {}
   
-   getMarkdown(): Observable<Markdown[]>{
-     return this._http.get<Markdown[]>("/api/markdown");
+   getMarkdown(): Observable<String[]>{
+     return this._http.get<String[]>("/api/markdown");
    }
    getComment(): Observable<Comment[]>{
     return this._http.get<Comment[]>("/api/comment");

@@ -2,9 +2,20 @@
 
 $primary : rgb(189, 189, 189);
 
+@font-face{
+    font-family: Autery;
+    src: url(assets/Font/Autery.ttf) format("truetype");
+}
+
+@font-face{
+    font-family: Louis-George-Cafe;
+    src: url(assets/Font/LGC.ttf) format("truetype");
+}
+
 body{
     background: $primary;
     font-size: 18px;
+    margin: 0;
 }
     
 

@@ -4,15 +4,17 @@
             <markdown [src]="s"> </markdown>
 
             <div id="commentsection">
-                <div *ngFor="let c of comments">
-                    <ng-container *ngIf="(markdownloc+c.PartitionKey._) == s">
+                <ng-container *ngFor="let c of comments">
+                    <div *ngIf="(markdownloc+c.PartitionKey._) == s">
                         <h3> {{ c.Person._ }} </h3>
                         <p> {{ c.RowKey._ }} </p>
-                    </ng-container>
-                </div>
+                    </div>
+                </ng-container>
                 <form #f="ngForm" (ngSubmit)="addComment(f, s)">
+                    <p>Namn</p>
                     <input type="text" name="name" value="Insert your name" ngModel required>
-                    <input type="text" name="text" value="Insert your comment" ngModel required>
+                    <p>Kommentar</p>
+                    <textarea rows="4" cols="50" type="text" name="text" value="Insert your comment" ngModel required> </textarea>
                     <button>Submit</button>
                 </form>
             </div>
