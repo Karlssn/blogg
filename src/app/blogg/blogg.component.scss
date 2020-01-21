@@ -6,6 +6,10 @@
 
 }
 
+@media screen and (max-width: 600px) {
+
+}
+
 h1 {
     font: 2em 'Louis-George-Cafe';
     margin: 0;
@@ -26,7 +30,7 @@ h2 {
 h3 {
     font: 1em 'Louis-George-Cafe';
     font-weight: bold;
-    margin:0;
+    margin: 0;
 }
 
 p {
@@ -36,7 +40,13 @@ p {
 }
 
 markdown img {
-    height: 30em;
+    max-width: 30em;
+    height: auto;
+}
+@media screen and (max-width: 950px){
+markdown img{
+    max-width: 100%;
+}
 }
 
 #commentsection div {
@@ -54,7 +64,7 @@ markdown img {
 
 #commentsection {
     form {
-        p{
+        p {
             font-size: 1em;
             margin: 0;
         }
@@ -86,4 +96,10 @@ markdown img {
         position: relative;
         top: 1px;
     }
+}
+
+@media screen and (max-width: 600px){
+#commentsection textarea{
+    width: 20em;
+}
 }
