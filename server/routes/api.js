@@ -26,6 +26,10 @@ let response = {
 router.get('/markdown', (req,res)=>{
     fs.readdir( 'dist/mjblogg/assets/Markdown/', (error,files)=>{
         if(!error){
+            // Latest post first
+            files.sort((a,b)=>{
+                return parseInt(b) - parseInt(a);
+            });
             res.json(files);
         }
     });    
