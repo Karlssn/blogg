@@ -67,6 +67,7 @@ router.post('/postComment', (req,res)=>{
     tableSvc.insertEntity('cmtable',task, function (error, result, response) {
         if(!error){
           console.log('Successfully added comment to database');
+          res.json(req.body);
         }
       });
 })

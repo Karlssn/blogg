@@ -47,9 +47,10 @@ export class BloggComponent implements OnInit {
     let filename = file.replace(this.markdownloc, '');
     let time = new Date();
     let comment = new Comment(filename, f.value.text, f.value.name, time);
-    this._dataService.postComment(comment).subscribe(com =>
-      this.comments.push(com));
-      window.location.reload();
+    this._dataService.postComment(comment).subscribe(
+      x => console.log('onNext: %s', x),
+      e => console.log('onError: %s', e),
+      () => window.location.reload());
   }
 
   ngOnInit() {
