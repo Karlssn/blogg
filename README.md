@@ -1,4 +1,5 @@
 # Travel adventure blog
+This blog is live at [traveladventure](http://traveladventure.blog/).
 
 ## To run the project
 This project depends on Node and Angular.
