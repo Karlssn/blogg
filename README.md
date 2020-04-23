@@ -33,7 +33,7 @@ Would show the files in the following order:
 1.md
 ```
 ## Comment section
-This project has a commentsection. All comments are stored in a azure storage. To make this work for a local machine, a enviormental variable needs to be [set](https://azure.github.io/azure-storage-node/TableService.html).
+This project has a commentsection. All comments are stored in a azure storage. To make this work for a local machine, a enviorment variable needs to be [set](https://azure.github.io/azure-storage-node/TableService.html).
 
 The structure of the storage is the following:
 ```

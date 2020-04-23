@@ -1,24 +1,25 @@
 <article>
     <ng-container *ngIf="markdown">
-        <div *ngFor="let s of markdown" class="posts">
-            <markdown [src]="s"> </markdown>
-
-            <div id="commentsection">
-                <ng-container *ngFor="let c of comments">
-                    <div *ngIf="(markdownloc+c.PartitionKey._) == s">
-                        <h3> {{ c.Person._ }} </h3>
-                        <p> {{ c.RowKey._ }} </p>
-                    </div>
-                </ng-container>
-                <form #f="ngForm" (ngSubmit)="addComment(f, s)">
-                    <p>Namn</p>
-                    <input type="text" name="name" value="Insert your name" ngModel required>
-                    <p>Kommentar</p>
-                    <textarea rows="4" cols="50" type="text" name="text" value="Insert your comment" ngModel required> </textarea>
-                    <button>Lägg till kommentar</button>
-                </form>
+            <div *ngFor="let s of progMarkdown" class="posts">
+                <markdown [src]="s"> </markdown>
+                <div id="commentsection">
+                    <ng-container *ngFor="let c of comments">
+                        <div *ngIf="(markdownloc+c.PartitionKey._) == s">
+                            <h3> {{ c.Person._ }} </h3>
+                            <p> {{ c.RowKey._ }} </p>
+                        </div>
+                    </ng-container>
+                    <form #f="ngForm" (ngSubmit)="addComment(f, s)">
+                        <p>Namn</p>
+                        <input type="text" name="name" value="Insert your name" ngModel required>
+                        <p>Kommentar</p>
+                        <textarea rows="4" cols="50" type="text" name="text" value="Insert your comment" ngModel
+                            required> </textarea>
+                        <button>Lägg till kommentar</button>
+                    </form>
+                </div>
+                <hr>
             </div>
-            <hr>
-        </div>
     </ng-container>
+    <button id="load"*ngIf="show" (click)="loadMore()">Ladda fler bloggposts</button>
 </article>

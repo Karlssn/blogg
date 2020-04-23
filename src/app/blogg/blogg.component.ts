@@ -13,17 +13,25 @@ import { NgForm } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class BloggComponent implements OnInit {
-
+  progMarkdown: String[] = [];
   markdown: String[] = [];
   comments: any[] = [];
+  show = true;
   markdownloc = '../../assets/Markdown/';
   constructor(private _dataService: DataService) {
     let _this = this;
     this._dataService.getMarkdown()
       .subscribe(res => {
         _this.markdown = res.map((x) => {
-          return this.markdownloc+x
+          return this.markdownloc + x
         });
+        for (let index = 0; index < 5; index++) {
+          console.log(this.markdown)
+          console.log(this.progMarkdown)
+          if (_this.markdown.length != 0 && _this.markdown !== undefined) {
+            _this.progMarkdown.push(_this.markdown.shift())
+          }
+        }
       });
 
     this._dataService.getComment()
@@ -52,7 +60,17 @@ export class BloggComponent implements OnInit {
       e => console.log('onError: %s', e),
       () => window.location.reload());
   }
-
+  loadMore() {
+    for (let index = 0; index < 5; index++) {
+      if (this.markdown.length != 0 && this.markdown !== undefined) {
+        console.log(this.markdown)
+        console.log(this.progMarkdown)
+        this.progMarkdown.push(this.markdown.shift())
+      } else {
+        this.show = false;
+      }
+    }
+  }
   ngOnInit() {
   }
 
