@@ -25,7 +25,7 @@ export class BloggComponent implements OnInit {
         _this.markdown = res.map((x) => {
           return this.markdownloc + x
         });
-        for (let index = 0; index < 5; index++) {
+        for (let index = 0; index < 3; index++) {
           console.log(this.markdown)
           console.log(this.progMarkdown)
           if (_this.markdown.length != 0 && _this.markdown !== undefined) {
@@ -61,7 +61,7 @@ export class BloggComponent implements OnInit {
       () => window.location.reload());
   }
   loadMore() {
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < 3; index++) {
       if (this.markdown.length != 0 && this.markdown !== undefined) {
         console.log(this.markdown)
         console.log(this.progMarkdown)
